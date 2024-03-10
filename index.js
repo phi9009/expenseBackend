@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
+const wrapAsync = require("./wrapAsync");
+const Item = require("./models/item");
 
 app.use(express.static(path.join(__dirname, "dist")));
 
@@ -19,16 +21,23 @@ mongoose
   });
 
 const db = mongoose.connection;
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
   console.log("Database connected");
 });
 
 
-app.get("/month", (req, res) =>{
+app.get("/month", wrapAsync( async (req, res) =>{
   res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify({ a: 1 }));
-})
+  console.log("Hello?")
+  
+  const response = await Item.find();
+  //res.send(JSON.stringify({ a: 1 }));
+  res.json(response);
+}))
 
 
 
