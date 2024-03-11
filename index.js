@@ -39,7 +39,11 @@ app.get("/month", wrapAsync( async (req, res) =>{
   res.json(response);
 }))
 
-
+app.delete("/item/:id", wrapAsync(async (req,res) => {
+    const delete_id = req.params.id;
+    const deleted = await Item.deleteOne({id: delete_id});
+    res.json(deleted);
+}))
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'dist', 'index.html'))
