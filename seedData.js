@@ -44,7 +44,7 @@ const seedDB = async() => {
     await Item.deleteMany({});
     
     for(let i = 0; i < 200; i++){
-        
+    let coinFlip = randomNumber(10);    
 
         const item = new Item({
             value: Math.floor(Math.random() * 1000)+1,
@@ -55,6 +55,7 @@ const seedDB = async() => {
                      .set("month", randomNumber(12))
                      .set("day", randomNumber(28))
                      .set("year", 2024),
+            isExpense: (coinFlip >= 5) ? true:false,
             
         })
         await item.save();

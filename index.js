@@ -41,7 +41,7 @@ app.get("/month", wrapAsync( async (req, res) =>{
 
 app.delete("/item/:id", wrapAsync(async (req,res) => {
     const delete_id = req.params.id;
-    const deleted = await Item.deleteOne({id: delete_id});
+    const deleted = await Item.deleteOne({_id: delete_id});
     res.json(deleted);
 }))
 

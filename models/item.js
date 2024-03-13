@@ -8,6 +8,7 @@ const ItemSchema = new Schema({
     location: String,
     category: String,
     date: Object,
+    isExpense: Boolean,
         
     
 })
