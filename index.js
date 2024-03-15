@@ -45,6 +45,20 @@ app.delete("/item/:id", wrapAsync(async (req,res) => {
     res.json(deleted);
 }))
 
+app.put("/item/:id", wrapAsync(async (req, res) => {
+    const update_id = req.params.id;
+    console.log(req.body)
+    const update_item = req.body;
+    await Item.findOneAndUpdate({_id: update_id}, update_item);
+    res.json({success: true})
+}))
+app.post("/item/:id", wrapAsync(async (req, res) => {
+  const new_item = req.body;
+  
+  const _new_item = await Item.create(new_item);
+
+  res.json(_new_item);
+}))
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'dist', 'index.html'))
   });
