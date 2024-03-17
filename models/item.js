@@ -13,15 +13,3 @@ const ItemSchema = new Schema({
     
 })
 module.exports = mongoose.model('Item', ItemSchema);
-// {
-//     value: randomNumber(1000),
-//     isExpense: randomNumber(2) ? true : false,
-//     id: uuidv4(),
-//     title: titles[randomNumber(titles.length)],
-//     description: titles[randomNumber(titles.length)],
-//     date: dayjs()
-//         .set("month", randomNumber(12))
-//         .set("day", randomNumber(28))
-//         .set("year", 2024),
-//     category: titles[randomNumber(titles.length)],
-// }
